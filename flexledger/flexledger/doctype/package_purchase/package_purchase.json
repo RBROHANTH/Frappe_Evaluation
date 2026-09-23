@@ -2,66 +2,93 @@
  "actions": [],
  "allow_bulk_edit": 1,
  "allow_rename": 1,
- "autoname": "MEM-.YYYY.-.####",
- "creation": "2026-09-22 18:34:43.341960",
+ "autoname": "PKG-.YYYY.-.####",
+ "creation": "2026-09-23 11:52:25.251760",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "member_name",
-  "phone",
-  "email",
-  "join_date",
+  "member",
+  "total_credits",
+  "credits_used",
+  "credits_remaining",
+  "amount_paid",
+  "purchase_date",
+  "expiry_date",
   "status",
-  "user"
+  "amended_from"
  ],
  "fields": [
   {
-   "fieldname": "member_name",
-   "fieldtype": "Data",
-   "in_global_search": 1,
+   "fieldname": "member",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Member Name",
+   "label": "member",
+   "options": "Member",
    "reqd": 1
   },
   {
-   "fieldname": "phone",
-   "fieldtype": "Data",
-   "label": "Phone",
+   "fieldname": "total_credits",
+   "fieldtype": "Int",
+   "label": "total_credits"
+  },
+  {
+   "default": "0",
+   "fieldname": "credits_used",
+   "fieldtype": "Int",
+   "label": "credits_used ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "credits_remaining",
+   "fieldtype": "Int",
+   "label": "credits_remaining",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amount_paid",
+   "fieldtype": "Currency",
+   "label": "amount_paid",
+   "non_negative": 1,
    "reqd": 1
   },
   {
-   "fieldname": "email",
+   "default": "Today",
+   "fieldname": "purchase_date",
    "fieldtype": "Data",
-   "label": "Email"
+   "label": "purchase_date"
   },
   {
-   "fieldname": "join_date",
-   "fieldtype": "Date",
-   "label": "Join Date",
-   "options": "Today"
+   "fieldname": "expiry_date",
+   "fieldtype": "Data",
+   "label": "expiry_date"
   },
   {
    "default": "Active",
    "fieldname": "status",
    "fieldtype": "Select",
-   "label": "Status",
-   "options": "Active\nFrozen"
+   "in_list_view": 1,
+   "label": "status",
+   "options": "Active\nExpired\nFully"
   },
   {
-   "fieldname": "user",
+   "fieldname": "amended_from",
    "fieldtype": "Link",
-   "label": "User",
-   "options": "User",
-   "set_only_once": 1
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Package Purchase",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2026-09-23 12:53:06.993633",
+ "modified": "2026-09-23 12:55:32.536354",
  "modified_by": "Administrator",
  "module": "Flexledger",
- "name": "Member",
+ "name": "Package Purchase",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
@@ -91,22 +118,23 @@
   {
    "email": 1,
    "export": 1,
-   "print": 1,
    "read": 1,
    "report": 1,
    "role": "FIT Trainer",
    "share": 1
   },
   {
+   "amend": 1,
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
    "export": 1,
-   "print": 1,
    "read": 1,
    "report": 1,
    "role": "FIT Studio Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
