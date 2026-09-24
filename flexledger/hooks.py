@@ -5,6 +5,24 @@ app_description = "this is for the frappe evaluation"
 app_email = "rbroahnth179@gmail.com"
 app_license = "mit"
 
+
+
+
+#######################################For Evaluation######################################
+
+after_install = "for_hooks_py.after_install.after_install"
+
+doc_events = {
+    "*": {
+        "on_update": "flexledger.audit.log_change",
+        "on_submit": "flexledger.audit.log_change",
+        "on_cancel": "flexledger.audit.log_change",
+    }
+}
+
+#######################################For Evaluation######################################
+
+
 # Apps
 # ------------------
 

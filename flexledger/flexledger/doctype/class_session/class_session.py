@@ -1,10 +1,6 @@
-# Copyright (c) 2026, R B Rohanth and contributors
-# For license information, please see license.txt
-
 import frappe
 from frappe.model.document import Document
 from frappe.utills import today
-
 class ClassSession(Document):
 	def validate(self):
 		if(self.session_date > today()):
@@ -16,4 +12,17 @@ class ClassSession(Document):
 			frappe.msgprint(today())
 		if not self.credits_remaining >= self.credits_charged:
 			frappe.throw("A package's credits_remaining should be greater than credits_charged")
-			
+
+	def before_submit(self):
+		if not self.status == "Completed":
+			frappe.throw("the session isn't completed yet , thus wait till it is completed")
+
+	def on_submit(self):
+		pass
+
+	def on_trash(self):
+		if not self.status == "Cancelled" or not self.status == "Draft":
+			frappe.throw("This document is neither a Draft nor a Cancelled Document , thus you can't delete this")
+
+	def on_update(self):
+		self.save()
